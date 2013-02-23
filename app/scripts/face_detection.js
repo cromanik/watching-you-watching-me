@@ -53,15 +53,11 @@ define(['jquery', 'constants', 'headtrackr', 'youtube', 'imagediff'], function($
             buffer.getContext('2d').putImageData(faceImageData, 0, 0);
 
             if (previousImage == null) {
-              previousImage = new Image();
-              previousImage.src = buffer.toDataURL('image/png');
+              previousImage = buffer;
             } else {
-              var currentImage = new Image();
-              currentImage.src = buffer.toDataURL('image/png');
+              var currentImage = buffer;
 
-              for (var i = 25; i += 25; i < 500) {
-                console.log(i, imagediff.equal(previousImage, currentImage, i) ? 'match' : 'no match');
-              }
+              console.log(imagediff.equal(previousImage, currentImage, 150) ? 'Welcome back!' : 'Who are you?');
 
               previousImage = currentImage;
             }
